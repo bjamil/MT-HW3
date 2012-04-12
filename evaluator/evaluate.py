@@ -24,4 +24,5 @@ ref = [line.split() for line in open(reference)]
 # read and score each system and output ordered by score
 sys_scores = [(os.path.basename(f), score([line.split() for line in open(f)], ref)) for f in glob.glob(opts.data + "/*") if f != reference and f != source]
 for (sysname, score) in sorted(sys_scores, key=lambda x: -x[1]):
-  print sysname
+  if sysname != 'source' and sysname != 'reference':
+    print sysname
